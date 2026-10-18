@@ -1,0 +1,228 @@
+{
+  "entities": {
+    "Tenant": {
+      "title": "Tenant",
+      "description": "Assinante ou empresa do SaaS Gestor de Streamings",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "created_at": { "type": "string" }
+      },
+      "required": ["id", "name"]
+    },
+    "UserProfile": {
+      "title": "UserProfile",
+      "description": "Perfil de usuário associado ao tenant",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "tenant_id": { "type": "string" },
+        "email": { "type": "string" },
+        "full_name": { "type": "string" },
+        "company_name": { "type": "string" },
+        "phone": { "type": "string" },
+        "password_hash": { "type": "string" },
+        "role": { "type": "string" },
+        "created_at": { "type": "string" }
+      },
+      "required": ["id", "tenant_id", "email"]
+    },
+    "Customer": {
+      "title": "Customer",
+      "description": "Cliente final de streaming/IPTV gerenciado pelo tenant",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "tenant_id": { "type": "string" },
+        "full_name": { "type": "string" },
+        "phone": { "type": "string" },
+        "whatsapp": { "type": "string" },
+        "email": { "type": "string" },
+        "cpf": { "type": "string" },
+        "app_id": { "type": "string" },
+        "plan_id": { "type": "string" },
+        "monthly_fee": { "type": "number" },
+        "start_date": { "type": "string" },
+        "due_date": { "type": "string" },
+        "payment_method": { "type": "string" },
+        "status": { "type": "string" },
+        "notes": { "type": "string" },
+        "mac_address": { "type": "string" },
+        "device_key": { "type": "string" },
+        "app_username": { "type": "string" },
+        "app_password": { "type": "string" },
+        "created_at": { "type": "string" }
+      },
+      "required": ["id", "tenant_id", "full_name", "due_date"]
+    },
+    "Charge": {
+      "title": "Charge",
+      "description": "Cobrança ou mensalidade do cliente",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "tenant_id": { "type": "string" },
+        "customer_id": { "type": "string" },
+        "customer_name": { "type": "string" },
+        "app_name": { "type": "string" },
+        "plan_name": { "type": "string" },
+        "amount": { "type": "number" },
+        "due_date": { "type": "string" },
+        "paid_at": { "type": "string" },
+        "status": { "type": "string" },
+        "payment_method": { "type": "string" },
+        "discount": { "type": "number" },
+        "notes": { "type": "string" },
+        "created_at": { "type": "string" }
+      },
+      "required": ["id", "tenant_id", "customer_id", "amount", "due_date", "status"]
+    },
+    "Application": {
+      "title": "Application",
+      "description": "Aplicativo de streaming (ex: IBO Player, XCIPTV)",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "tenant_id": { "type": "string" },
+        "name": { "type": "string" },
+        "category": { "type": "string" },
+        "description": { "type": "string" },
+        "color": { "type": "string" },
+        "status": { "type": "string" },
+        "login_type": { "type": "string" },
+        "created_at": { "type": "string" }
+      },
+      "required": ["id", "tenant_id", "name"]
+    },
+    "Plan": {
+      "title": "Plan",
+      "description": "Plano comercial de streaming/IPTV",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "tenant_id": { "type": "string" },
+        "name": { "type": "string" },
+        "description": { "type": "string" },
+        "app_id": { "type": "string" },
+        "category": { "type": "string" },
+        "price": { "type": "number" },
+        "billing_cycle": { "type": "string" },
+        "duration_days": { "type": "number" },
+        "status": { "type": "string" },
+        "created_at": { "type": "string" }
+      },
+      "required": ["id", "tenant_id", "name", "price"]
+    },
+    "WhatsAppInstance": {
+      "title": "WhatsAppInstance",
+      "description": "Instância de conexão do WhatsApp",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "tenant_id": { "type": "string" },
+        "name": { "type": "string" },
+        "provider": { "type": "string" },
+        "status": { "type": "string" },
+        "phone_number": { "type": "string" },
+        "api_url": { "type": "string" },
+        "last_connected_at": { "type": "string" }
+      },
+      "required": ["id", "tenant_id", "name"]
+    },
+    "WhatsAppAutomation": {
+      "title": "WhatsAppAutomation",
+      "description": "Configurações e templates de automação de WhatsApp",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "tenant_id": { "type": "string" },
+        "is_active": { "type": "boolean" },
+        "send_one_day_before": { "type": "boolean" },
+        "send_on_due_date": { "type": "boolean" },
+        "send_after_due_date": { "type": "boolean" },
+        "scheduled_time": { "type": "string" },
+        "timezone": { "type": "string" },
+        "template_one_day_before": { "type": "string" },
+        "template_due_date": { "type": "string" },
+        "template_after_due_date": { "type": "string" }
+      },
+      "required": ["id", "tenant_id"]
+    },
+    "WhatsAppLog": {
+      "title": "WhatsAppLog",
+      "description": "Log de mensagens enviadas pelo WhatsApp",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "tenant_id": { "type": "string" },
+        "customer_id": { "type": "string" },
+        "customer_name": { "type": "string" },
+        "phone": { "type": "string" },
+        "event_type": { "type": "string" },
+        "message_content": { "type": "string" },
+        "status": { "type": "string" },
+        "sent_at": { "type": "string" }
+      },
+      "required": ["id", "tenant_id", "phone", "status", "sent_at"]
+    },
+    "License": {
+      "title": "License",
+      "description": "Licença de uso do SaaS (trial ou vitalícia)",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "tenant_id": { "type": "string" },
+        "type": { "type": "string" },
+        "status": { "type": "string" },
+        "trial_started_at": { "type": "string" },
+        "trial_expires_at": { "type": "string" },
+        "activated_at": { "type": "string" },
+        "price": { "type": "number" }
+      },
+      "required": ["id", "tenant_id", "type", "status"]
+    }
+  },
+  "firestore": {
+    "/tenants/{tenantId}": {
+      "schema": { "$ref": "#/entities/Tenant" },
+      "description": "Tenants do sistema"
+    },
+    "/users/{userId}": {
+      "schema": { "$ref": "#/entities/UserProfile" },
+      "description": "Perfis de usuários"
+    },
+    "/customers/{customerId}": {
+      "schema": { "$ref": "#/entities/Customer" },
+      "description": "Clientes gerenciados"
+    },
+    "/charges/{chargeId}": {
+      "schema": { "$ref": "#/entities/Charge" },
+      "description": "Cobranças dos clientes"
+    },
+    "/applications/{appId}": {
+      "schema": { "$ref": "#/entities/Application" },
+      "description": "Aplicativos disponíveis"
+    },
+    "/plans/{planId}": {
+      "schema": { "$ref": "#/entities/Plan" },
+      "description": "Planos comerciais"
+    },
+    "/whatsapp_instances/{instanceId}": {
+      "schema": { "$ref": "#/entities/WhatsAppInstance" },
+      "description": "Instâncias conectadas do WhatsApp"
+    },
+    "/automation_settings/{settingId}": {
+      "schema": { "$ref": "#/entities/WhatsAppAutomation" },
+      "description": "Configurações de automação do WhatsApp"
+    },
+    "/message_logs/{logId}": {
+      "schema": { "$ref": "#/entities/WhatsAppLog" },
+      "description": "Histórico de mensagens de WhatsApp"
+    },
+    "/licenses/{licenseId}": {
+      "schema": { "$ref": "#/entities/License" },
+      "description": "Licenças de uso"
+    }
+  }
+}

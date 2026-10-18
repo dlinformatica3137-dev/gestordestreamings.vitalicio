@@ -1,0 +1,8 @@
+{
+  "name": "Gestor de Streamings",
+  "description": "Sistema SaaS profissional para gerenciamento de clientes de streaming, IPTV, planos, cobranças, controle de licenças e automações de WhatsApp.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
